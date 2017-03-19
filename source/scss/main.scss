@@ -1,0 +1,85 @@
+html,
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.wrapper,
+.subgrid {
+  display: grid;
+}
+
+.wrapper {
+  min-height: 100vh;
+  grid-template-areas:
+    'total total total total'
+    'modif modif modif oper'
+    'digit digit digit oper'
+    'digit digit digit oper'
+    'digit digit digit oper'
+    'digit digit digit oper';
+  grid-auto-columns: 1fr;
+}
+
+.window {
+  background-color: #333;
+  color: #fff;
+  font-size: 4rem;
+  margin: 0;
+  padding: 1rem;
+  grid-area: total;
+  display: flex;
+  justify-content: flex-end; // Horizontal
+  align-items: flex-end; // Vertical
+}
+
+button {
+  border: 1px solid #9c9c9c;
+  font-size: 2rem;
+  outline: none;
+
+  .modifiers & {
+    background-color: #ccc;
+  }
+
+  .operations & {
+    background-color: #ffa500;
+    color: #fff;
+    // TODO: Add black overlay on click
+  }
+
+  .digits & {
+    background-color: #efefef;
+  }
+
+  &:active {
+    background-color: #b0b0b0;
+  }
+}
+
+.modifiers {
+  grid-area: modif;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+}
+
+.operations {
+  grid-area: oper;
+}
+
+.digits {
+  grid-area: digit;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row-reverse;
+
+  button {
+    flex: 1 0 30%;
+  }
+
+  .wide-button {
+    flex: 2 0 60%;
+    order: 1;
+  }
+}
